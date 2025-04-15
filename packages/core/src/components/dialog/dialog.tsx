@@ -113,7 +113,7 @@ export const Dialog: React.FC<DialogProps> & { displayName?: string } = ({
     className,
     containerRef,
     icon,
-    isCloseButtonShown = false,
+    isCloseButtonShown,
     isOpen = false,
     onClose,
     role = "dialog",
@@ -158,7 +158,9 @@ export const Dialog: React.FC<DialogProps> & { displayName?: string } = ({
                         <div className={Classes.DIALOG_HEADER}>
                             <Icon icon={icon} size={IconSize.STANDARD} aria-hidden={true} tabIndex={-1} />
                             <H6 id={titleId}>{title}</H6>
-                            {isCloseButtonShown && (
+                            {/* show close button if prop is undefined or null
+                            this gives us a behavior as if the default value were `true` */}
+                            {isCloseButtonShown !== false && (
                                 <Button
                                     aria-label="Close"
                                     className={Classes.DIALOG_CLOSE_BUTTON}
